@@ -48,7 +48,7 @@ public class HitTest implements ApplicationListener {
         rectAlien = new Rectangle();
         rectAlien.x = -200;
         rectAlien.y = 800/2;
-        rectAlien.width = 64;
+        rectAlien.width = 50;
         rectAlien.height = 64;
     }
 
@@ -63,14 +63,14 @@ public class HitTest implements ApplicationListener {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(spSpaceShip,rectShip.x-35,rectShip.y-25);
-        batch.draw(spAlien,rectAlien.x+50,rectAlien.y-40);
+        batch.draw(spAlien,rectAlien.x-47,rectAlien.y-68);
         batch.end();
-        shapeRenderer.setProjectionMatrix(camera.combined);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.GREEN);
-        shapeRenderer.rect(rectAlien.x, rectAlien.y, rectAlien.getWidth(), rectAlien.getHeight());
-        shapeRenderer.rect(rectShip.x, rectShip.y, rectShip.getWidth(), rectShip.getHeight());
-        shapeRenderer.end();
+       // shapeRenderer.setProjectionMatrix(camera.combined);
+       // shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+       // shapeRenderer.setColor(Color.GREEN);
+       // shapeRenderer.rect(rectAlien.x, rectAlien.y, rectAlien.getWidth(), rectAlien.getHeight());
+        //shapeRenderer.rect(rectShip.x, rectShip.y, rectShip.getWidth(), rectShip.getHeight());
+        //shapeRenderer.end();
 
 
         if(Gdx.input.isTouched()) {
