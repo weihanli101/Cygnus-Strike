@@ -48,7 +48,7 @@ public class HitTest implements ApplicationListener {
         rectAlien = new Rectangle();
         rectAlien.x = -200;
         rectAlien.y = 800/2;
-        rectAlien.width = 64;
+        rectAlien.width = 66;
         rectAlien.height = 64;
     }
 
