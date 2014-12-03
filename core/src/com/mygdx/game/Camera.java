@@ -10,7 +10,6 @@ public class Camera implements ApplicationListener {
     @Override
     public void create() {
         camMain = new OrthographicCamera();
-        camMain = new OrthographicCamera();
         camMain.setToOrtho(true,1200,800);
     }
     @Override
