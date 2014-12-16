@@ -14,7 +14,7 @@ import com.badlogic.gdx.math.Vector3;
 //https://github.com/libgdx/libgdx/wiki/Accelerometer
 //https://github.com/libgdx/libgdx/wiki/A-simple-game
 
-//Mr. Matt Brock
+//Mr. Matt Brock yay
 //==================================================================================================
 
 public class Spaceship {
