@@ -47,7 +47,7 @@ public class Spaceship {
         rectShip.y = fY;
     }
 
-    public void HandleTilt(){
+  /*  public void HandleTilt(){
         float fAccelX = Gdx.input.getAccelerometerX();
         float fAccelY = Gdx.input.getAccelerometerY();
 
@@ -63,8 +63,8 @@ public class Spaceship {
         if(fAccelY>3){
             fX += 500 *Gdx.graphics.getDeltaTime();
         }
-
-    }
+*/
+    //}
     public void HandleKeys(){
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
             fY -= 500*Gdx.graphics.getDeltaTime();
