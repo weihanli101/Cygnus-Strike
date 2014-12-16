@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 //Description=======================================================================================
@@ -20,17 +21,19 @@ public class Spaceship {
     float fX;
     float fY;
     OrthographicCamera camera;
-    Sprite sprite;
+    Sprite spSpaceship;
+    Rectangle rectShip;
 
     public Spaceship(float fX_, float fY_, OrthographicCamera camera_, Sprite sprite_){
         fX = fX_;
         fY = fY_;
         camera = camera_;
-        sprite = sprite_;
+        spSpaceship = sprite_;
+        rectShip = spSpaceship.getBoundingRectangle();
     }
     public void HandleTouch(){
-        float fSprite_Width = sprite.getWidth();
-        float fSprite_Height = sprite.getWidth();
+        float fSprite_Width = spSpaceship.getWidth();
+        float fSprite_Height = spSpaceship.getWidth();
         if (Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
@@ -39,6 +42,11 @@ public class Spaceship {
             fY = touchPos.y - (fSprite_Height/ 2);
         }
     }
+    public void updateSpaceship(){
+        rectShip.x = fX;
+        rectShip.y = fY;
+    }
+
     public void HandleTilt(){
         float fAccelX = Gdx.input.getAccelerometerX();
         float fAccelY = Gdx.input.getAccelerometerY();

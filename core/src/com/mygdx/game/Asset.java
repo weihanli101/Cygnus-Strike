@@ -7,12 +7,25 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Asset implements ApplicationListener {
     Texture imgAlien;
+    Texture imgSpaceship;
+    Texture imgLaz_Bullet;
+    Texture imgBackground;
+    Sprite spLaz_BulletLoad;
     Sprite spAlienLoad;
+    Sprite spSpaceshipLoad;
+
+
 
     @Override
     public void create() {
         imgAlien = new Texture("Alien.png");
         spAlienLoad = new Sprite(imgAlien);
+        imgSpaceship = new Texture("StarShip.png");
+        spSpaceshipLoad = new Sprite(imgSpaceship);
+        imgLaz_Bullet = new Texture("LaserBall.png");
+        spLaz_BulletLoad = new Sprite(imgLaz_Bullet);
+        imgBackground = new Texture("background.png");
+
     }
 
     @Override
