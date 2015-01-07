@@ -2,10 +2,17 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
+
+import java.util.Iterator;
+
 
 //Description=======================================================================================
 //This is the the spaceship object class, it also handles Spaceship's movement
@@ -18,19 +25,44 @@ import com.badlogic.gdx.math.Vector3;
 //==================================================================================================
 
 public class Spaceship {
-    float fX;
-    float fY;
-    OrthographicCamera camera;
-    Sprite spSpaceship;
-    Rectangle rectShip;
+    private float fX;
+    private float fY;
+    private OrthographicCamera camera;
+    private SpriteBatch batch;
+    private Sprite spSpaceship;
+    private Texture imgSpacespace;
+    public Rectangle rectShip;
+    private Array<Alien> ArAlien;
 
-    public Spaceship(float fX_, float fY_, OrthographicCamera camera_, Sprite sprite_){
+
+    public Spaceship(Array<Alien> ArAlien_, OrthographicCamera camera_,SpriteBatch batch_,float fX_, float fY_){
         fX = fX_;
         fY = fY_;
         camera = camera_;
-        spSpaceship = sprite_;
-        rectShip = spSpaceship.getBoundingRectangle();
+        batch = batch_;
+        ArAlien = ArAlien_;
     }
+
+    public void spaceshipCreate(){
+        imgSpacespace = new Texture("StarShip.png");
+        spSpaceship = new Sprite(imgSpacespace);
+        rectShip = new Rectangle(spSpaceship.getBoundingRectangle());
+    }
+    public void spaceshipRender(){
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        batch.draw(spSpaceship,fX,fY);
+        batch.end();
+
+    }
+    public float SpaceshipX(){
+        return(fX);
+    }
+    public float SpaceshipY(){
+        return(fY);
+    }
+
     public void HandleTouch(){
         float fSprite_Width = spSpaceship.getWidth();
         float fSprite_Height = spSpaceship.getWidth();
@@ -41,10 +73,9 @@ public class Spaceship {
             fX = touchPos.x - (fSprite_Width/ 2);
             fY = touchPos.y - (fSprite_Height/ 2);
         }
-    }
-    public void updateSpaceship(){
         rectShip.x = fX;
         rectShip.y = fY;
+
     }
 
   /*  public void HandleTilt(){

@@ -14,29 +14,29 @@ public class BackgroundV2 {
     SpriteBatch batch;
     Sprite spBackground;
     Texture imgBackground;
-
     float fScrollTimer = 0.0f;
 
-    public BackgroundV2(OrthographicCamera camera_, Texture texture_, SpriteBatch batch_){
+
+    public BackgroundV2(OrthographicCamera camera_, SpriteBatch batch_){
         batch = batch_;
         camera = camera_;
-        imgBackground = texture_;
+    }
+    public void backgroundCreate(){
+        imgBackground = new Texture("background.png");
         imgBackground.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);//allows for texture to loop
         spBackground = new Sprite(imgBackground);
-        spBackground.setSize(1200,800);
-        //spBackground.setPosition(200,0);
+        spBackground.setSize(1200, 800);
     }
     public void render(){
         camera.update();
-        //scroll from top to bottom (using .setV & .setV2 would create horizontal movement)
         spBackground.setU(fScrollTimer + 2);//incrementing position of image
         spBackground.setU2(fScrollTimer);
+        Gdx.gl.glClearColor(0, 0, 0, 0);//clears background with black colour before redrawing
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
         fScrollTimer += Gdx.graphics.getDeltaTime();
         if (fScrollTimer > 1f) fScrollTimer = 0.0f; //Loops image by resetting timer
 
-       // Gdx.gl.glClearColor(0, 0, 0, 0);//clears background with black colour before redrawing
         batch.begin();
         spBackground.draw(batch);//background being drawn onto the stage
         batch.end();
