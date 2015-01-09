@@ -2,25 +2,22 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Array;
-
-import java.util.Iterator;
 
 
 //Description=======================================================================================
-//This is the the spaceship object class, it also handles Spaceship's movement
+//This is the the spaceship object class: Handles spaceship's life, movement, rendering, hit box
 
 //References:
 //https://github.com/libgdx/libgdx/wiki/Accelerometer
 //https://github.com/libgdx/libgdx/wiki/A-simple-game
-
 //Mr. Matt Brock yay
 //==================================================================================================
 
@@ -30,29 +27,47 @@ public class Spaceship {
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private Sprite spSpaceship;
-    private Texture imgSpacespace;
-    public Rectangle rectShip;
-    private Array<Alien> ArAlien;
+    private Texture imgSpaceship;
+    private Rectangle rectShip;
+    private int nStock = 3;
+    private static int nSheetCols = 1;
+    private static int nSheetRows = 3;
+    private TextureRegion[] imgFrames;
+    private TextureRegion currentFrame;
+    private Animation AniSpaceship;
+    private float fStateTime;
 
-
-    public Spaceship(Array<Alien> ArAlien_, OrthographicCamera camera_,SpriteBatch batch_,float fX_, float fY_){
+    public Spaceship(OrthographicCamera camera_,SpriteBatch batch_,float fX_, float fY_){
         fX = fX_;
         fY = fY_;
         camera = camera_;
         batch = batch_;
-        ArAlien = ArAlien_;
     }
 
     public void spaceshipCreate(){
-        imgSpacespace = new Texture("StarShip.png");
-        spSpaceship = new Sprite(imgSpacespace);
-        rectShip = new Rectangle(spSpaceship.getBoundingRectangle());
+        imgSpaceship = new Texture("Textures/spaceship.png");
+        TextureRegion[][] tmp = TextureRegion.split(imgSpaceship,
+                imgSpaceship.getWidth()/nSheetCols, imgSpaceship.getHeight()/nSheetRows);
+        imgFrames = new TextureRegion[nSheetCols * nSheetRows];
+        int nIndex = 0;
+        for (int i = 0; i < nSheetRows; i++) {
+            for (int j = 0; j < nSheetCols; j++) {
+                imgFrames[nIndex++] = tmp[i][j];
+            }
+        }
+        AniSpaceship = new Animation(0.1f, imgFrames);
+        batch = new SpriteBatch();
+        fStateTime = 0f;
+        batch = new SpriteBatch();
     }
     public void spaceshipRender(){
         camera.update();
+        fStateTime += Gdx.graphics.getDeltaTime();
+        currentFrame = AniSpaceship.getKeyFrame(fStateTime, true);
+        spSpaceship = new Sprite(currentFrame);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(spSpaceship,fX,fY);
+        batch.draw(spSpaceship, fX, fY);
         batch.end();
 
     }
@@ -61,6 +76,16 @@ public class Spaceship {
     }
     public float SpaceshipY(){
         return(fY);
+    }
+
+    public Rectangle getRectShip(){
+        return(rectShip);
+    }
+
+    public void spaceshipUpdate(){
+        rectShip = new Rectangle(spSpaceship.getBoundingRectangle());
+        rectShip.x = fX;
+        rectShip.y = fY;
     }
 
     public void HandleTouch(){
@@ -73,11 +98,11 @@ public class Spaceship {
             fX = touchPos.x - (fSprite_Width/ 2);
             fY = touchPos.y - (fSprite_Height/ 2);
         }
-        rectShip.x = fX;
-        rectShip.y = fY;
-
     }
-
+    public int getLife(){
+        nStock -= 1;
+        return(nStock);
+    }
   /*  public void HandleTilt(){
         float fAccelX = Gdx.input.getAccelerometerX();
         float fAccelY = Gdx.input.getAccelerometerY();
