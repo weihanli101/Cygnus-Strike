@@ -1,11 +1,11 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Alien{
@@ -13,23 +13,25 @@ public class Alien{
     private float fY;
     private Texture imgAlien;
     private Sprite spAlien;
-    public Rectangle rectAlien;
+    private Rectangle rectAlien;
     private OrthographicCamera camera;
     private SpriteBatch batch;
+    private float fVelX;
 
     public Alien(float fX_, float fY_){
         fX = fX_;
         fY = fY_;
     }
     public void AlienCreate(){
-        imgAlien = new Texture("Alien.png");
+        imgAlien = new Texture("Textures/Alien.png");
         spAlien = new Sprite(imgAlien);
         batch = new SpriteBatch();
+        fVelX = MathUtils.random(200,800);
     }
 
     public boolean updateAlien(){
         spAlien.setPosition(fX,fY);
-        fX += Gdx.graphics.getDeltaTime()*200;
+        fX += Gdx.graphics.getDeltaTime()*fVelX;
         rectAlien = new Rectangle(spAlien.getBoundingRectangle());
         rectAlien.x = fX;
         rectAlien.y = fY;
@@ -45,7 +47,9 @@ public class Alien{
         batch.begin();
         batch.draw(spAlien, fX,fY);
         batch.end();
-
+    }
+    public Rectangle getRectAlien(){
+        return(rectAlien);
     }
 
 }

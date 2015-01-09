@@ -7,9 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-/**
- * Created by WL on 12/9/2014.
- */
 public class Laser {
     private Sprite spLaser;
     private Texture imgLaser;
@@ -24,9 +21,10 @@ public class Laser {
         fY = fY_;
     }
     public void LaserCreate(){
-        imgLaser = new Texture("LaserBall.png");
+        imgLaser = new Texture("Textures/LaserBall.png");
         spLaser = new Sprite(imgLaser);
         rectLaser = new Rectangle(spLaser.getBoundingRectangle());
+        batch = new SpriteBatch();
     }
     public void renderLaser(OrthographicCamera camera_){
         camera = camera_;
@@ -37,12 +35,15 @@ public class Laser {
         batch.end();
 
     }
+    public Rectangle getRectLaser(){
+        return (rectLaser);
+    }
     public boolean updateLaser(){
        spLaser.setPosition(fX,fY);
-       fX += 1000*Gdx.graphics.getDeltaTime();
+       fX -= 2000*Gdx.graphics.getDeltaTime();
        rectLaser.x = fX;
        rectLaser.y = fY;
-       if(fX > 1200){
+       if(fX < 0){
            return true;
         }
        return false;

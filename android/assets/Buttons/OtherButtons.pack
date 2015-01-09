@@ -1,0 +1,47 @@
+
+OtherButtons.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+btnExitDown
+  rotate: false
+  xy: 1, 176
+  size: 409, 173
+  orig: 409, 173
+  offset: 0, 0
+  index: -1
+btnExitUp
+  rotate: false
+  xy: 1, 1
+  size: 409, 173
+  orig: 409, 173
+  offset: 0, 0
+  index: -1
+btnRetryDown
+  rotate: false
+  xy: 412, 176
+  size: 409, 173
+  orig: 409, 173
+  offset: 0, 0
+  index: -1
+btnRetryUp
+  rotate: false
+  xy: 412, 1
+  size: 409, 173
+  orig: 409, 173
+  offset: 0, 0
+  index: -1
+btnShootDown
+  rotate: false
+  xy: 823, 176
+  size: 190, 173
+  orig: 190, 173
+  offset: 0, 0
+  index: -1
+btnShootUp
+  rotate: false
+  xy: 823, 1
+  size: 190, 173
+  orig: 190, 173
+  offset: 0, 0
+  index: -1
