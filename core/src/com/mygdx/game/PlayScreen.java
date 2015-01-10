@@ -58,7 +58,6 @@ public class PlayScreen implements Screen {
         // update and draw stuff
 
         background.render();
-        //background.backgroundRender();
         spaceship.spaceshipRender();
         spaceship.spaceshipUpdate();
         stage.draw();
@@ -81,7 +80,7 @@ public class PlayScreen implements Screen {
             else if(alien1.getRectAlien().overlaps(spaceship.getRectShip())){
                 nStock = spaceship.getLife();
                 System.out.println(nStock);// Debug code for life take out later!!!!!!
-                if(nStock == 0){// Debug code for life take out later!!!!!!
+                if(nStock == 0){
                     game.setScreen(game.gameOverScreen);
                 }
                 iter.remove();
@@ -138,16 +137,14 @@ public class PlayScreen implements Screen {
         ArLaser = new Array<Laser>();
         ArPowerups = new Array<Powerups>();
         background = new Background(camera.camMain, batch);
-        //background = new Background(camera.camMain,batch);
         spaceship = new Spaceship(camera.camMain, batch, 900, 400);
         spaceship.spaceshipCreate();
         background.backgroundCreate();
-        //background.backgroundCreate();
         soundLaser = Gdx.audio.newSound(Gdx.files.internal("Sounds/laserShot.wav"));
         SpawnAlien();
         SpawnLaser();
 
-        atlasButton = new TextureAtlas("Buttons/OtherButtons.pack");
+        atlasButton = new TextureAtlas("Buttons/Buttons.pack");
         skinButton = new Skin();
         skinButton.addRegions(atlasButton);
         fontButton = new BitmapFont();

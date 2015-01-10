@@ -3,7 +3,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -19,12 +18,12 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 public class OptionScreen implements Screen {
 
     MyGame game;
-    private OrthographicCamera camera;
+    Camera camera = new Camera();
     private Stage stage;
     private TextureAtlas atlasButton;
     private Skin skinButton;
-    private TextButton.TextButtonStyle tbsExit;
-    private TextButton btnExit;
+    private TextButton.TextButtonStyle tbsX;
+    private TextButton btnX;
     private BitmapFont fontButton;
     private SpriteBatch batch;
     private Sprite spScreenBackground;
@@ -42,8 +41,8 @@ public class OptionScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        camera.update();
-        batch.setProjectionMatrix(camera.combined);
+        camera.camMain.update();
+        batch.setProjectionMatrix(camera.camMain.combined);
 
         batch.begin();
         spScreenBackground.draw(batch);
@@ -65,28 +64,28 @@ public class OptionScreen implements Screen {
         fBtnHeight2 = 174;//174
         stageWidth = 1200;
         stageHeight = 800;
-        camera = new OrthographicCamera();
+        camera.create();
         batch = new SpriteBatch();
-        stage = new Stage(new StretchViewport(stageWidth, stageHeight, camera));
+        stage = new Stage(new StretchViewport(stageWidth, stageHeight, camera.camMain));
         Gdx.input.setInputProcessor(stage);
         soundButton = Gdx.audio.newSound(Gdx.files.internal("Sounds/buttonClick.wav"));
 
         skinButton = new Skin();
-        skinButton.addRegions(atlasButton = new TextureAtlas("Buttons/MenuButtons.pack"));
+        skinButton.addRegions(atlasButton = new TextureAtlas("Buttons/Buttons.pack"));
         fontButton = new BitmapFont();
 
-        tbsExit = new TextButton.TextButtonStyle();
-        tbsExit.up = skinButton.getDrawable("btnExitUp");
-        tbsExit.down = skinButton.getDrawable("btnExitDown");
-        tbsExit.font = fontButton;
+        tbsX = new TextButton.TextButtonStyle();
+        tbsX.up = skinButton.getDrawable("btnXUp");
+        tbsX.down = skinButton.getDrawable("btnXDown");
+        tbsX.font = fontButton;
 
-        btnExit = new TextButton("", tbsExit);
-        btnExit.setWidth(fBtnWidth2);
-        btnExit.setHeight(fBtnHeight2);
-        btnExit.setPosition(stageWidth, stageHeight - fBtnHeight2);
-        btnExit.setTransform(true);
-        btnExit.setRotation(90);
-        btnExit.addListener(new InputListener() {
+        btnX = new TextButton("", tbsX);
+        btnX.setWidth(fBtnWidth2);
+        btnX.setHeight(fBtnHeight2);
+        btnX.setPosition(stageWidth, stageHeight - fBtnHeight2);
+        btnX.setTransform(true);
+        btnX.setRotation(90);
+        btnX.addListener(new InputListener() {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -100,7 +99,7 @@ public class OptionScreen implements Screen {
 
             }
         });
-        stage.addActor(btnExit);
+        stage.addActor(btnX);
 
 
         spScreenBackground = new Sprite(tScreenBackground = new Texture(Gdx.files.internal("Screens/ScreenBackground.jpg")));

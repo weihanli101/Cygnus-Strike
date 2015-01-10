@@ -3,7 +3,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -20,7 +19,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 public class GameOverScreen implements Screen {
 
     MyGame game;
-    private OrthographicCamera camera;
+    Camera camera = new Camera();
     private Stage stage;
     private TextureAtlas atlasButton;
     private Skin skinButton;
@@ -42,8 +41,8 @@ public class GameOverScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        camera.update();
-        batch.setProjectionMatrix(camera.combined);
+        camera.camMain.update();
+        batch.setProjectionMatrix(camera.camMain.combined);
 
         batch.begin();
         spScreenBackground.draw(batch);
@@ -65,14 +64,14 @@ public class GameOverScreen implements Screen {
         fBtnHeight1 = 173;//173
         stageWidth = 1200;
         stageHeight = 800;
-        camera = new OrthographicCamera();
+        camera.create();
         batch = new SpriteBatch();
-        stage = new Stage(new StretchViewport(stageWidth, stageHeight, camera));
+        stage = new Stage(new StretchViewport(stageWidth, stageHeight, camera.camMain));
         Gdx.input.setInputProcessor(stage);
         soundButton = Gdx.audio.newSound(Gdx.files.internal("Sounds/buttonClick.wav"));
 
         skinButton = new Skin();
-        skinButton.addRegions(atlasButton = new TextureAtlas("Buttons/OtherButtons.pack"));
+        skinButton.addRegions(atlasButton = new TextureAtlas("Buttons/Buttons.pack"));
         fontButton = new BitmapFont();
 
         tbsRetry = new TextButton.TextButtonStyle();
@@ -80,9 +79,6 @@ public class GameOverScreen implements Screen {
         tbsRetry.down = skinButton.getDrawable("btnRetryDown");
         tbsRetry.font = fontButton;
         btnRetry = new TextButton("", tbsRetry);
-        btnRetry.setWidth(fBtnWidth1);
-        btnRetry.setHeight(fBtnHeight1);
-        btnRetry.setPosition(stageWidth/2 + fBtnHeight1 - 50, stageHeight/2);
         btnRetry.addListener(new InputListener() {
 
             @Override
@@ -103,9 +99,6 @@ public class GameOverScreen implements Screen {
         tbsExit.down = skinButton.getDrawable("btnExitDown");
         tbsExit.font = fontButton;
         btnExit = new TextButton("", tbsExit);
-        btnExit.setWidth(fBtnWidth1);
-        btnExit.setHeight(fBtnHeight1);
-        btnExit.setPosition(stageWidth/2 + fBtnHeight1 - 50, stageHeight/2);
         btnExit.addListener(new InputListener() {
 
             @Override
@@ -128,7 +121,7 @@ public class GameOverScreen implements Screen {
         table.row();
         table.setTransform(true);
         table.setRotation(90);
-        table.setPosition(stageWidth/2 + fBtnHeight1 - 150, stageHeight/2);
+        table.setPosition(stageWidth/2 + fBtnHeight1 + 100, stageHeight/2);
         stage.addActor(table);
         spScreenBackground = new Sprite(tScreenBackground = new Texture(Gdx.files.internal("Screens/ScreenGameOver.jpg")));
         spScreenBackground.setSize(1200, 800);

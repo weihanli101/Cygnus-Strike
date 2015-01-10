@@ -3,7 +3,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -21,20 +20,21 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 public class MainMenuScreen implements Screen {
 
     MyGame game;
-    OrthographicCamera camera;
+    Camera camera = new Camera();
     SpriteBatch batch;
     Texture tMenuBackground;
     Sprite spMenuBackground;
     private Stage stage;
     private TextureAtlas atlasButton;
     private Skin skinButton;
-    private TextButton.TextButtonStyle tbsPlay, tbsProfile, tbsOption, tbsHelp, tbsExit, tbsShop;
-    private TextButton btnPlay, btnProfile, btnOption, btnHelp, btnExit, btnShop;
+    private TextButton.TextButtonStyle tbsPlay, tbsProfile, tbsOption, tbsHelp, tbsX, tbsShop;
+    private TextButton btnPlay, btnProfile, btnOption, btnHelp, btnX, btnShop;
     private BitmapFont fontButton;
     private float fBtnWidth1, fBtnHeight1, fBtnWidth2, fBtnHeight2;
     private Table table;
     float stageWidth, stageHeight;
     private Sound soundButton;
+    Texture tStock;
 
     // constructor to keep a reference to the main Game class
     public MainMenuScreen(MyGame game) {
@@ -45,8 +45,8 @@ public class MainMenuScreen implements Screen {
     public void render(float delta) {
         // update and draw stuff
 
-        camera.update();
-        batch.setProjectionMatrix(camera.combined);
+        camera.camMain.update();
+        batch.setProjectionMatrix(camera.camMain.combined);
 
         batch.begin();
         spMenuBackground.draw(batch);
@@ -65,16 +65,15 @@ public class MainMenuScreen implements Screen {
         // called when this screen is set as the screen with game.setScreen();
 
         soundButton = Gdx.audio.newSound(Gdx.files.internal("Sounds/buttonClick.wav"));
-
-        camera = new OrthographicCamera();
+        tStock = new Texture(Gdx.files.internal("Textures/heart.png"));////bloop
         batch = new SpriteBatch();
-
         stageWidth = 1200;
         stageHeight = 800;
-        stage = new Stage(new StretchViewport(stageWidth, stageHeight, camera));
+        camera.create();
+        stage = new Stage(new StretchViewport(stageWidth, stageHeight, camera.camMain));
         Gdx.input.setInputProcessor(stage);
 
-        atlasButton = new TextureAtlas("Buttons/MenuButtons.pack");
+        atlasButton = new TextureAtlas("Buttons/Buttons.pack");
         skinButton = new Skin();
         skinButton.addRegions(atlasButton);
         fontButton = new BitmapFont();
@@ -172,18 +171,18 @@ public class MainMenuScreen implements Screen {
             }
         });
 
-        tbsExit = new TextButton.TextButtonStyle();
-        tbsExit.up = skinButton.getDrawable("btnExitUp");
-        tbsExit.down = skinButton.getDrawable("btnExitDown");
-        tbsExit.font = fontButton;
+        tbsX = new TextButton.TextButtonStyle();
+        tbsX.up = skinButton.getDrawable("btnXUp");
+        tbsX.down = skinButton.getDrawable("btnXDown");
+        tbsX.font = fontButton;
 
-        btnExit = new TextButton("", tbsExit);
-        btnExit.setWidth(fBtnWidth2);
-        btnExit.setHeight(fBtnHeight2);
-        btnExit.setPosition(stageWidth, stageHeight - fBtnHeight2);
-        btnExit.setTransform(true);
-        btnExit.setRotation(90);
-        btnExit.addListener(new InputListener() {
+        btnX = new TextButton("", tbsX);
+        btnX.setWidth(fBtnWidth2);
+        btnX.setHeight(fBtnHeight2);
+        btnX.setPosition(stageWidth, stageHeight - fBtnHeight2);
+        btnX.setTransform(true);
+        btnX.setRotation(90);
+        btnX.addListener(new InputListener() {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -241,7 +240,7 @@ public class MainMenuScreen implements Screen {
         table.setPosition(stageWidth/2 + fBtnHeight1 - 50, stageHeight/2);//y, x 163
 
         stage.addActor(table);
-        stage.addActor(btnExit);
+        stage.addActor(btnX);
         stage.addActor(btnShop);
 
 
