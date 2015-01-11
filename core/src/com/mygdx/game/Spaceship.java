@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector3;
 
 
 //Description=======================================================================================
-//This is the the spaceship object class: Handles spaceship's life, movement, rendering, hit box
+//This is the the spaceship object class: Handles movement, rendering, hit box
 
 //References:
 //https://github.com/libgdx/libgdx/wiki/Accelerometer
@@ -29,7 +29,6 @@ public class Spaceship {
     private Sprite spSpaceship;
     private Texture imgSpaceship;
     private Rectangle rectShip;
-    private int nStock = 3;
     private static int nSheetCols = 1;
     private static int nSheetRows = 3;
     private TextureRegion[] imgFrames;
@@ -98,10 +97,6 @@ public class Spaceship {
             fX = touchPos.x - (fSprite_Width/ 2);
             fY = touchPos.y - (fSprite_Height/ 2);
         }
-    }
-    public int getLife(){
-        nStock -= 1;
-        return(nStock);
     }
   /*  public void HandleTilt(){
         float fAccelX = Gdx.input.getAccelerometerX();

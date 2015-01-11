@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -34,7 +35,8 @@ public class MainMenuScreen implements Screen {
     private Table table;
     float stageWidth, stageHeight;
     private Sound soundButton;
-    Texture tStock;
+    private Music musicMainMenu;
+    Boolean bMusic = false;
 
     // constructor to keep a reference to the main Game class
     public MainMenuScreen(MyGame game) {
@@ -65,7 +67,14 @@ public class MainMenuScreen implements Screen {
         // called when this screen is set as the screen with game.setScreen();
 
         soundButton = Gdx.audio.newSound(Gdx.files.internal("Sounds/buttonClick.wav"));
-        tStock = new Texture(Gdx.files.internal("Textures/heart.png"));////bloop
+        musicMainMenu = Gdx.audio.newMusic(Gdx.files.internal("Sounds/MainMenuMusic.mp3"));
+        musicMainMenu.setVolume(20);
+        musicMainMenu.setLooping(true);
+
+        if (!bMusic){
+            musicMainMenu.play();
+            bMusic= true;
+        }
         batch = new SpriteBatch();
         stageWidth = 1200;
         stageHeight = 800;
@@ -94,7 +103,9 @@ public class MainMenuScreen implements Screen {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                bMusic = false;
                 soundButton.play();
+                musicMainMenu.pause();
                 game.setScreen(game.playScreen);
                 return true;
             }
