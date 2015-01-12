@@ -92,7 +92,8 @@ public class PlayScreen implements Screen {
             nStock = 3;
             fGameTime = 180;
             nScore = 0;
-            game.setScreen(game.gameOverScreen);
+            musicPlay.stop();
+            game.setScreen(game.winScreen);
         }
 
         Iterator<Alien> iter = ArAlien.iterator();
@@ -183,7 +184,7 @@ public class PlayScreen implements Screen {
         //Score Font================================================================================
         fontScore = new BitmapFont(true);
         fontScore.setScale(2);
-        fontTime = new BitmapFont(true);
+        fontTime = new BitmapFont( true);
         fontTime.setScale(2);
         fontStock = new BitmapFont(true);
         fontStock.setScale(2);

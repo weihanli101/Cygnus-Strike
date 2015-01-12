@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-public class GameOverScreen implements Screen {
+public class WinScreen implements Screen {
 
     MyGame game;
     Camera camera = new Camera();
@@ -34,7 +34,7 @@ public class GameOverScreen implements Screen {
     private Sound soundButton;
     private Table table;
 
-    public GameOverScreen(MyGame game){
+    public WinScreen(MyGame game){
         this.game = game;
     }
 
@@ -123,7 +123,7 @@ public class GameOverScreen implements Screen {
         table.setRotation(90);
         table.setPosition(stageWidth/2 + fBtnHeight1 + 100, stageHeight/2);
         stage.addActor(table);
-        spScreenBackground = new Sprite(tScreenBackground = new Texture(Gdx.files.internal("Screens/ScreenGameOver2.png")));
+        spScreenBackground = new Sprite(tScreenBackground = new Texture(Gdx.files.internal("Screens/ScreenWin2.png")));
         spScreenBackground.setSize(1200, 800);
         spScreenBackground.rotate90(false);
 

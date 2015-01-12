@@ -15,7 +15,7 @@ public class MyGame extends Game {
     HelpScreen helpScreen;
     ShopScreen shopScreen;
     GameOverScreen gameOverScreen;
-
+    WinScreen winScreen;
 
     @Override
     public void create() {
@@ -26,6 +26,7 @@ public class MyGame extends Game {
         helpScreen = new HelpScreen(this);
         shopScreen = new ShopScreen(this);
         gameOverScreen = new GameOverScreen(this);
+        winScreen = new WinScreen(this);
         setScreen(mainMenuScreen);
 
     }
