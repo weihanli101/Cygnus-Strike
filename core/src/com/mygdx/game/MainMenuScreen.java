@@ -95,10 +95,9 @@ public class MainMenuScreen implements Screen {
         tbsPlay.up = skinButton.getDrawable("btnPlayUp");
         tbsPlay.down = skinButton.getDrawable("btnPlayDown");
         tbsPlay.font = fontButton;
-
         btnPlay = new TextButton("", tbsPlay);
-        btnPlay.setWidth(fBtnWidth1);
         btnPlay.setHeight(fBtnHeight1);
+        btnPlay.setWidth(fBtnWidth1);
         btnPlay.addListener(new InputListener() {
 
             @Override
@@ -120,10 +119,7 @@ public class MainMenuScreen implements Screen {
         tbsProfile.up = skinButton.getDrawable("btnProfileUp");
         tbsProfile.down = skinButton.getDrawable("btnProfileDown");
         tbsProfile.font = fontButton;
-
         btnProfile = new TextButton("", tbsProfile);
-        btnProfile.setWidth(fBtnWidth1);
-        btnProfile.setHeight(fBtnHeight1);
         btnProfile.addListener(new InputListener() {
 
             @Override
@@ -142,10 +138,7 @@ public class MainMenuScreen implements Screen {
         tbsOption.up = skinButton.getDrawable("btnOptionUp");
         tbsOption.down = skinButton.getDrawable("btnOptionDown");
         tbsOption.font = fontButton;
-
         btnOption = new TextButton("", tbsOption);
-        btnOption.setWidth(fBtnWidth1);
-        btnOption.setHeight(fBtnHeight1);
         btnOption.addListener(new InputListener() {
 
             @Override
@@ -164,10 +157,7 @@ public class MainMenuScreen implements Screen {
         tbsHelp.up = skinButton.getDrawable("btnHelpUp");
         tbsHelp.down = skinButton.getDrawable("btnHelpDown");
         tbsHelp.font = fontButton;
-
         btnHelp = new TextButton("", tbsHelp);
-        btnHelp.setWidth(fBtnWidth1);
-        btnHelp.setHeight(fBtnHeight1);
         btnHelp.addListener(new InputListener() {
 
             @Override

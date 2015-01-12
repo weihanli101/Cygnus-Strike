@@ -47,7 +47,7 @@ public class PlayScreen implements Screen {
     long lLastSpawnTimePowerUps;
     long lPowerUpTime;
     float fGameTime = 180f;
-    int nScore = 0;
+    public static int nScore = 0;
     int nStock = 3;
     float stageWidth, stageHeight, fBtnWidth2, fBtnHeight2;
 
@@ -91,9 +91,9 @@ public class PlayScreen implements Screen {
         if(MathUtils.round(fGameTime) == 0 ){//Ends game when time runs out
             nStock = 3;
             fGameTime = 180;
-            nScore = 0;
+            //nScore = 0;
             musicPlay.stop();
-            game.setScreen(game.winScreen);
+            game.setScreen(game.gameOverScreen);
         }
 
         Iterator<Alien> iter = ArAlien.iterator();
@@ -111,7 +111,7 @@ public class PlayScreen implements Screen {
                         musicPlay.stop();
                         nStock = 3;
                         fGameTime = 180;
-                        nScore = 0;
+                        //nScore = 0;
                         game.setScreen(game.gameOverScreen);
                     }
                 }

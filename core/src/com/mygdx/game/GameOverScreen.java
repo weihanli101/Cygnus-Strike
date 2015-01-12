@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -34,6 +36,9 @@ public class GameOverScreen implements Screen {
     private Sound soundButton;
     private Table table;
 
+    private BitmapFont fontScore;
+    private Matrix4 mx4Font = new Matrix4();
+
     public GameOverScreen(MyGame game){
         this.game = game;
     }
@@ -44,8 +49,15 @@ public class GameOverScreen implements Screen {
         camera.camMain.update();
         batch.setProjectionMatrix(camera.camMain.combined);
 
+
         batch.begin();
-        spScreenBackground.draw(batch);
+            mx4Font.setToRotation(new Vector3(0, 0, 0), 0);
+            batch.setTransformMatrix(mx4Font);
+            spScreenBackground.draw(batch);
+
+            mx4Font.setToRotation(new Vector3(1, 1, 0), -180);
+            batch.setTransformMatrix(mx4Font);
+        fontScore.draw(batch, "Final Score: " + PlayScreen.nScore, 200, 200);
         batch.end();
         stage.draw();
 
@@ -59,6 +71,11 @@ public class GameOverScreen implements Screen {
     @Override
     public void show() {
         // called when this screen is set as the screen with game.setScreen();
+
+
+        fontScore = new BitmapFont(true);
+        fontScore.setScale(4);
+
 
         fBtnWidth1 = 495;//495
         fBtnHeight1 = 173;//173
@@ -83,6 +100,7 @@ public class GameOverScreen implements Screen {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                PlayScreen.nScore = 0;
                 soundButton.play();
                 game.setScreen(game.playScreen);
                 return true;
@@ -103,6 +121,7 @@ public class GameOverScreen implements Screen {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                PlayScreen.nScore = 0;
                 soundButton.play();
                 game.setScreen(game.mainMenuScreen);
                 return true;
@@ -123,7 +142,7 @@ public class GameOverScreen implements Screen {
         table.setRotation(90);
         table.setPosition(stageWidth/2 + fBtnHeight1 + 100, stageHeight/2);
         stage.addActor(table);
-        spScreenBackground = new Sprite(tScreenBackground = new Texture(Gdx.files.internal("Screens/ScreenGameOver2.png")));
+        spScreenBackground = new Sprite(tScreenBackground = new Texture(Gdx.files.internal("Screens/ScreenGameOver.png")));
         spScreenBackground.setSize(1200, 800);
         spScreenBackground.rotate90(false);
 
