@@ -66,7 +66,7 @@ public class Spaceship {
         spSpaceship = new Sprite(currentFrame);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(spSpaceship, fX, fY);
+        batch.draw(spSpaceship, fX-100, fY);
         batch.end();
 
     }
@@ -83,7 +83,7 @@ public class Spaceship {
 
     public void spaceshipUpdate(){
         rectShip = new Rectangle(spSpaceship.getBoundingRectangle());
-        rectShip.x = fX;
+        rectShip.x = fX-100;
         rectShip.y = fY;
     }
 

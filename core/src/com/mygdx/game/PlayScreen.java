@@ -88,10 +88,9 @@ public class PlayScreen implements Screen {
         if(TimeUtils.millis() -lLastSpawnTimePowerUps>10000)SpawnPowerups();
         fGameTime -= Gdx.graphics.getDeltaTime();
 
-        if(MathUtils.round(fGameTime) == 0 ){//Ends game when time runs out
+        if(MathUtils.round(fGameTime) <= 0 || MathUtils.round(fGameTime)<0){//Ends game when time runs out
             nStock = 3;
             fGameTime = 180;
-            //nScore = 0;
             musicPlay.stop();
             game.setScreen(game.gameOverScreen);
         }
@@ -170,7 +169,7 @@ public class PlayScreen implements Screen {
         ArLaser = new Array<Laser>();
         ArPowerups = new Array<Powerups>();
         background = new Background(camera.camMain, batch);
-        spaceship = new Spaceship(camera.camMain, batch, 900, 400);
+        spaceship = new Spaceship(camera.camMain, batch, 200, 400);
         spaceship.spaceshipCreate();
         background.backgroundCreate();
         imgHeart = new Texture("Textures/HeartStock.png");
@@ -237,7 +236,7 @@ public class PlayScreen implements Screen {
         lLastSpawnTime = TimeUtils.millis();
     }
     public void SpawnLaser(){
-        laser = new Laser(spaceship.SpaceshipX(),spaceship.SpaceshipY());
+        laser = new Laser(spaceship.SpaceshipX(),spaceship.SpaceshipY()+20);
         laser.LaserCreate();
         ArLaser.add(laser);
         lLastSpawnTimeLaser = TimeUtils.millis();

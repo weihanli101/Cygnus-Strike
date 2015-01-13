@@ -31,7 +31,7 @@ public class Laser {
         camera.update();
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(spLaser, fX,fY);
+        batch.draw(spLaser, fX-100,fY);
         batch.end();
 
     }
@@ -41,7 +41,7 @@ public class Laser {
     public boolean updateLaser(){
        spLaser.setPosition(fX,fY);
        fX -= 2000*Gdx.graphics.getDeltaTime();
-       rectLaser.x = fX;
+       rectLaser.x = fX-100;
        rectLaser.y = fY;
        if(fX < 0){
            return true;

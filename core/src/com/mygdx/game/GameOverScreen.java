@@ -57,7 +57,7 @@ public class GameOverScreen implements Screen {
 
             mx4Font.setToRotation(new Vector3(1, 1, 0), -180);
             batch.setTransformMatrix(mx4Font);
-        fontScore.draw(batch, "Final Score: " + PlayScreen.nScore, 200, 200);
+        fontScore.draw(batch, "Final Score: " + PlayScreen.nScore, 200, 0);
         batch.end();
         stage.draw();
 
@@ -75,8 +75,6 @@ public class GameOverScreen implements Screen {
 
         fontScore = new BitmapFont(true);
         fontScore.setScale(4);
-
-
         fBtnWidth1 = 495;//495
         fBtnHeight1 = 173;//173
         stageWidth = 1200;
@@ -142,7 +140,7 @@ public class GameOverScreen implements Screen {
         table.setRotation(90);
         table.setPosition(stageWidth/2 + fBtnHeight1 + 100, stageHeight/2);
         stage.addActor(table);
-        spScreenBackground = new Sprite(tScreenBackground = new Texture(Gdx.files.internal("Screens/ScreenGameOver.png")));
+        spScreenBackground = new Sprite(tScreenBackground = new Texture(Gdx.files.internal("Screens/ScreenGameOver.jpg")));
         spScreenBackground.setSize(1200, 800);
         spScreenBackground.rotate90(false);
 
