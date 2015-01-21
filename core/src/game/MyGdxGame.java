@@ -40,7 +40,7 @@ public class MyGdxGame extends Game {
         font = new BitmapFont();
         skButton = new Skin();
         //process for .pack (.pack -> textureAtlas -> Skin -> TextButtonStyle)
-        taButton = new TextureAtlas(Gdx.files.internal("buttons.pack"));//.pack is used to hold multiple images and can be referenced by TextButtonStyle
+        taButton = new TextureAtlas(Gdx.files.internal("MenuButtons.pack"));//.pack is used to hold multiple images and can be referenced by TextButtonStyle
         skButton.addRegions(taButton);//Applying a texture atlas into a skin
 
         tImage = new Texture("badlogic.jpg");
@@ -48,9 +48,9 @@ public class MyGdxGame extends Game {
 
         tbsButton = new TextButton.TextButtonStyle();//TextButtonStyle Holds all the images that will be applied to the TextButton
         tbsButton.font = font;
-        tbsButton.up = skButton.getDrawable("btnPressUp");//images from TextButtonStyle are applied to individual button states (up, down, etc.)
-        tbsButton.down = skButton.getDrawable("btnPressDown");
-        tbsButton.checked = skButton.getDrawable("btnPressUp");
+        tbsButton.up = skButton.getDrawable("btnPlayUp");//images from TextButtonStyle are applied to individual button states (up, down, etc.)
+        tbsButton.down = skButton.getDrawable("btnPlayDown");
+        tbsButton.checked = skButton.getDrawable("btnPlayUp");
         tbButton = new TextButton("", tbsButton);//Applying the TextButtonStyle to the TextButton giving it all of its positions and images
         tbButton.setSize(200, 100);
         tbButton.setPosition(100, 100);
