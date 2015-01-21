@@ -14,7 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-
+//Description=======================================================================================
+//Handles: screen's input listener, buttons and rendering
+//Ref:https://code.google.com/p/libgdx-users/wiki/ScreenAndGameClasses
+//==================================================================================================
 public class ProfileScreen implements Screen {
 
     MyGame game;
@@ -55,9 +58,8 @@ public class ProfileScreen implements Screen {
     }
 
     @Override
-    public void show() {
+    public void show() {//Create Method 
         // called when this screen is set as the screen with game.setScreen();
-
         fBtnWidth2 = 189;//189
         fBtnHeight2 = 174;//174
         stageWidth = 1200;

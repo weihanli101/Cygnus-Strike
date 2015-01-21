@@ -10,14 +10,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
+//Description=======================================================================================
+//Handle: Animation for power-up, X&Y Coordinates, moves hit-box, rendering
 
 //Ref: https://github.com/libgdx/libgdx/wiki/2D-Animation
-//Naming: Ani = Animation
 
+//Naming: Ani = Animation
+//==================================================================================================
 public class Powerups {
     private float fX;
     private float fY;
-    private static int nSheetCols = 8;         // #1
+    private static int nSheetCols = 8;
     private static int nSheetRows = 6;
     private Texture imgPowerupSheet;
     private TextureRegion[] imgFrames;
@@ -54,7 +57,7 @@ public class Powerups {
         fStateTime += Gdx.graphics.getDeltaTime();
         currentFrame = AniPowerUp.getKeyFrame(fStateTime, true);
         spCurrentFrame = new Sprite(currentFrame);
-        batch.setProjectionMatrix(camera.combined);
+        batch.setProjectionMatrix(camera.combined);//Setting batch orientation to camera's
         batch.begin();
         batch.draw(spCurrentFrame, fX, fY);
         batch.end();
@@ -72,5 +75,4 @@ public class Powerups {
     public Rectangle getPowerupsRect(){
         return(rectPowerup);
     }
-
 }

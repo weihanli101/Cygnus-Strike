@@ -6,7 +6,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+//Description=======================================================================================
+//Handles: Laser's X&Y, collision detection, bounds checking, importing laser textures, moves laser
+//hit-box
 
+//Ref:Matt Brock
+//Scott Grondin
+//https://github.com/libgdx/libgdx/wiki/A-simple-game
+//==================================================================================================
 public class Laser {
     private Sprite spLaser;
     private Texture imgLaser;

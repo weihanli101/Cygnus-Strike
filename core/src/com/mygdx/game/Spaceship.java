@@ -18,6 +18,7 @@ import com.badlogic.gdx.math.Vector3;
 //References:
 //https://github.com/libgdx/libgdx/wiki/Accelerometer
 //https://github.com/libgdx/libgdx/wiki/A-simple-game
+//https://github.com/libgdx/libgdx/wiki/2D-Animation
 //Mr. Matt Brock yay
 //==================================================================================================
 
@@ -31,10 +32,10 @@ public class Spaceship {
     private Rectangle rectShip;
     private static int nSheetCols = 1;
     private static int nSheetRows = 3;
-    private TextureRegion[] imgFrames;
+    private TextureRegion[] imgFrames;//Array for Textures
     private TextureRegion currentFrame;
     private Animation AniSpaceship;
-    private float fStateTime;
+    private float fStateTime;//Timer for animation
 
     public Spaceship(OrthographicCamera camera_,SpriteBatch batch_,float fX_, float fY_){
         fX = fX_;
@@ -42,19 +43,18 @@ public class Spaceship {
         camera = camera_;
         batch = batch_;
     }
-
     public void spaceshipCreate(){
         imgSpaceship = new Texture("Textures/spaceship.png");
-        TextureRegion[][] tmp = TextureRegion.split(imgSpaceship,
+        TextureRegion[][] tmp = TextureRegion.split(imgSpaceship,//populating the texture region
                 imgSpaceship.getWidth()/nSheetCols, imgSpaceship.getHeight()/nSheetRows);
         imgFrames = new TextureRegion[nSheetCols * nSheetRows];
         int nIndex = 0;
-        for (int i = 0; i < nSheetRows; i++) {
+        for (int i = 0; i < nSheetRows; i++) {//Slicing Sprite-Sheet
             for (int j = 0; j < nSheetCols; j++) {
                 imgFrames[nIndex++] = tmp[i][j];
             }
-        }
-        AniSpaceship = new Animation(0.1f, imgFrames);
+    }
+        AniSpaceship = new Animation(0.1f, imgFrames);//Animation = Array of frames
         batch = new SpriteBatch();
         fStateTime = 0f;
         batch = new SpriteBatch();
@@ -66,7 +66,7 @@ public class Spaceship {
         spSpaceship = new Sprite(currentFrame);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(spSpaceship, fX-100, fY);
+        batch.draw(spSpaceship, fX-100, fY);//draw the spaceship a bit above to see it
         batch.end();
 
     }
@@ -91,14 +91,14 @@ public class Spaceship {
         float fSprite_Width = spSpaceship.getWidth();
         float fSprite_Height = spSpaceship.getWidth();
         if (Gdx.input.isTouched()) {
-            Vector3 touchPos = new Vector3();
+            Vector3 touchPos = new Vector3();//Using vector 3 as a 2-D vector for touch coordinates
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(touchPos);
             fX = touchPos.x - (fSprite_Width/ 2);
             fY = touchPos.y - (fSprite_Height/ 2);
         }
     }
-  /*  public void HandleTilt(){
+    public void HandleTilt(){
         float fAccelX = Gdx.input.getAccelerometerX();
         float fAccelY = Gdx.input.getAccelerometerY();
 
@@ -114,8 +114,8 @@ public class Spaceship {
         if(fAccelY>3){
             fX += 500 *Gdx.graphics.getDeltaTime();
         }
-*/
-    //}
+    }
+
     public void HandleKeys(){
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
             fY -= 500*Gdx.graphics.getDeltaTime();

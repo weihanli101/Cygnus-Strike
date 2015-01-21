@@ -6,8 +6,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+//Description=======================================================================================
+//Handles: background scrolling movement, background texture, rendering
 
-
+//Ref:https://code.google.com/p/libgdx-users/wiki/ScrollingTexture
+//==================================================================================================
 public class Background {
 
     private OrthographicCamera camera;
@@ -15,7 +18,6 @@ public class Background {
     private Sprite spBackground;
     private Texture imgBackground;
     float fScrollTimer = 0.0f;
-
 
     public Background(OrthographicCamera camera_, SpriteBatch batch_){
         batch = batch_;

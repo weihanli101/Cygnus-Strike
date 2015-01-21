@@ -7,6 +7,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
+//Description=======================================================================================
+//Handles: Aliens X&Y, collision detection, bounds checking, importing alien textures, moves Alien's
+//hit-box, rendering Aliens
+
+//Ref:Matt Brock
+//Scott Grondin
+//https://github.com/libgdx/libgdx/wiki/A-simple-game
+//==================================================================================================
 
 public class Alien{
     private float fX;
@@ -26,7 +34,7 @@ public class Alien{
         imgAlien = new Texture("Textures/Alien.png");
         spAlien = new Sprite(imgAlien);
         batch = new SpriteBatch();
-        fVelX = MathUtils.random(200,800);
+        fVelX = MathUtils.random(200,800);//altering speed of Aliens
     }
 
     public boolean updateAlien(){

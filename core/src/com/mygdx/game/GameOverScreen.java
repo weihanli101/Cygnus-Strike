@@ -17,7 +17,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+//Description=======================================================================================
+//Handles: screen's input listener, buttons and rendering, displaying high score, bit map font
+// rendering
 
+//Ref:https://code.google.com/p/libgdx-users/wiki/ScreenAndGameClasses
+//==================================================================================================
 public class GameOverScreen implements Screen {
 
     MyGame game;
@@ -51,13 +56,13 @@ public class GameOverScreen implements Screen {
 
 
         batch.begin();
-            mx4Font.setToRotation(new Vector3(0, 0, 0), 0);
+            mx4Font.setToRotation(new Vector3(0, 0, 0), 0);//Rotation for screen background and buttons
             batch.setTransformMatrix(mx4Font);
             spScreenBackground.draw(batch);
 
-            mx4Font.setToRotation(new Vector3(1, 1, 0), -180);
+            mx4Font.setToRotation(new Vector3(1, 1, 0), -180);//Rotation for the font
             batch.setTransformMatrix(mx4Font);
-        fontScore.draw(batch, "Final Score: " + PlayScreen.nScore, 200, 0);
+        fontScore.draw(batch, "Final Score: " + PlayScreen.nScore, 200, 0);// Score referenced from the PlayScreen.java
         batch.end();
         stage.draw();
 
@@ -69,7 +74,7 @@ public class GameOverScreen implements Screen {
     }
 
     @Override
-    public void show() {
+    public void show() {//Create method for screens
         // called when this screen is set as the screen with game.setScreen();
 
 
@@ -131,7 +136,7 @@ public class GameOverScreen implements Screen {
             }
         });
 
-        table = new Table();
+        table = new Table();//Table allows for buttons to be orientated in a grid like form
         table.add(btnRetry).width(fBtnWidth1).height(fBtnHeight1);
         table.row();
         table.add(btnExit).width(fBtnWidth1).height(fBtnHeight1);
@@ -146,12 +151,10 @@ public class GameOverScreen implements Screen {
 
     }
 
-
     @Override
     public void hide() {
         // called when current screen changes from this to a different screen
     }
-
 
     @Override
     public void pause() {
@@ -161,7 +164,6 @@ public class GameOverScreen implements Screen {
     @Override
     public void resume() {
     }
-
 
     @Override
     public void dispose() {

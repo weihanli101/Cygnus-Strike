@@ -14,6 +14,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+//Description=======================================================================================
+//Handles: The shop Screen's exit button and switching, rendering the screen, importing screen's
+//textures
+
+//Ref:https://code.google.com/p/libgdx-users/wiki/ScreenAndGameClasses
+//==================================================================================================
 
 public class ShopScreen implements Screen {
 
@@ -39,15 +45,12 @@ public class ShopScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
         camera.camMain.update();
         batch.setProjectionMatrix(camera.camMain.combined);
-
         batch.begin();
         spScreenBackground.draw(batch);
         batch.end();
         stage.draw();
-
     }
 
     @Override
@@ -56,28 +59,28 @@ public class ShopScreen implements Screen {
     }
 
     @Override
-    public void show() {
+    public void show() {//The create function, for for screens
         // called when this screen is set as the screen with game.setScreen();
-
-        fBtnWidth2 = 189;//189
-        fBtnHeight2 = 174;//174
+        fBtnWidth2 = 189;
+        fBtnHeight2 = 174;
         stageWidth = 1200;
         stageHeight = 800;
         camera.create();
         batch = new SpriteBatch();
+
         stage = new Stage(new StretchViewport(stageWidth, stageHeight, camera.camMain));
-        Gdx.input.setInputProcessor(stage);
+        Gdx.input.setInputProcessor(stage);//Setting the stage to the current InputProcessor
         soundButton = Gdx.audio.newSound(Gdx.files.internal("Sounds/buttonClick.wav"));
 
         skinButton = new Skin();
         skinButton.addRegions(atlasButton = new TextureAtlas("Buttons/MenuButtons.pack"));
         fontButton = new BitmapFont();
 
-        tbsX = new TextButton.TextButtonStyle();
+        tbsX = new TextButton.TextButtonStyle();//Allows setting of textures on button
         tbsX.up = skinButton.getDrawable("btnXUp");
         tbsX.down = skinButton.getDrawable("btnXDown");
         tbsX.font = fontButton;
-
+        //Button Orientation========================================================================
         btnX = new TextButton("", tbsX);
         btnX.setWidth(fBtnWidth2);
         btnX.setHeight(fBtnHeight2);
@@ -85,28 +88,24 @@ public class ShopScreen implements Screen {
         btnX.setTransform(true);
         btnX.setRotation(90);
         btnX.addListener(new InputListener() {
-
+        //==========================================================================================
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {//when the button is pressed do something
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 soundButton.play();
                 game.setScreen(game.mainMenuScreen);
                 return true;
             }
-
             @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {//when the button is not pressed do something
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
             }
         });
         stage.addActor(btnX);
-
-
         spScreenBackground = new Sprite(tScreenBackground = new Texture(Gdx.files.internal("Screens/ScreenBackground.jpg")));
         spScreenBackground.setSize(1200, 800);
         spScreenBackground.rotate90(false);
 
     }
-
 
     @Override
     public void hide() {

@@ -3,6 +3,11 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+//Description=======================================================================================
+//Handles: the orthographic camera
+
+//Ref:https://github.com/libgdx/libgdx/wiki/A-simple-game
+//==================================================================================================
 
 public class Camera implements ApplicationListener {
     OrthographicCamera camMain;

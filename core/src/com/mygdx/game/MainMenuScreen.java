@@ -16,7 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-
+//Description=======================================================================================
+//Handles: screen's input listener, buttons and rendering
+//Ref:https://code.google.com/p/libgdx-users/wiki/ScreenAndGameClasses
+//==================================================================================================
 
 public class MainMenuScreen implements Screen {
 
@@ -63,7 +66,7 @@ public class MainMenuScreen implements Screen {
 
 
     @Override
-    public void show() {
+    public void show() {//Create method for screens
         // called when this screen is set as the screen with game.setScreen();
 
         soundButton = Gdx.audio.newSound(Gdx.files.internal("Sounds/buttonClick.wav"));
