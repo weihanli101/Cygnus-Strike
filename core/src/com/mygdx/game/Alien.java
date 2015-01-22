@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Rectangle;
 //Ref:Matt Brock
 //Scott Grondin
 //https://github.com/libgdx/libgdx/wiki/A-simple-game
+//http://ics3ui.sgrondin.ca/ss14/ArrayLists.html
 //==================================================================================================
 
 public class Alien{
